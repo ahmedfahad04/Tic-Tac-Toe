@@ -14,7 +14,7 @@ version.
 The instruction is pretty simple. The tic-tac-toe board is similar to the **Numpad Keys**. Press corresponding button to fill out respective cells.
 
 ## Language 
-It's very simple and short project. Nothing complex concepts like data structures or algorithm hasn't used. C++ is used to demstrate the game's concept. 
+It's very simple and short project. Nothing complex concepts like data structures or algorithm hasn't used. **C++** is used to demstrate the game's concept. 
 
 ## Project Outcome
 Your query to why I made that simple projct marks the answer below: 
