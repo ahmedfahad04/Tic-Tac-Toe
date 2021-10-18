@@ -9,50 +9,68 @@ bool userInputConversion(int user_input, char sign)
 
     if (user_input == 1)
     {
-        if(board[2][0] != 'X' && board[2][0] != 'O') board[2][0] = sign;
-        else return false;
+        if (board[2][0] != 'X' && board[2][0] != 'O')
+            board[2][0] = sign;
+        else
+            return false;
     }
     else if (user_input == 2)
     {
-        if(board[2][1] != 'X' && board[2][1] != 'O') board[2][1] = sign;
-        else return false;
+        if (board[2][1] != 'X' && board[2][1] != 'O')
+            board[2][1] = sign;
+        else
+            return false;
     }
     else if (user_input == 3)
     {
-        if(board[2][2] != 'X' && board[2][2] != 'O') board[2][2] = sign;
-        else return false;
+        if (board[2][2] != 'X' && board[2][2] != 'O')
+            board[2][2] = sign;
+        else
+            return false;
     }
 
     else if (user_input == 4)
     {
-        if(board[1][0] != 'X' && board[1][0] != 'O') board[1][0] = sign;
-        else return false;
+        if (board[1][0] != 'X' && board[1][0] != 'O')
+            board[1][0] = sign;
+        else
+            return false;
     }
     else if (user_input == 5)
     {
-        if(board[1][1] != 'X' && board[1][1] != 'O') board[1][1] = sign;
-        else return false;
+        if (board[1][1] != 'X' && board[1][1] != 'O')
+            board[1][1] = sign;
+        else
+            return false;
     }
     else if (user_input == 6)
     {
-        if(board[1][2] != 'X' && board[1][2] != 'O') board[1][2] = sign;
-        else return false;
+        if (board[1][2] != 'X' && board[1][2] != 'O')
+            board[1][2] = sign;
+        else
+            return false;
     }
 
     else if (user_input == 7)
     {
-        if(board[0][0] != 'X' && board[0][0] != 'O') board[0][0] = sign;
-        else return false;
+        if (board[0][0] != 'X' && board[0][0] != 'O')
+            board[0][0] = sign;
+        else
+            return false;
     }
     else if (user_input == 8)
     {
-        if(board[0][1] != 'X' && board[0][1] != 'O') board[0][1] = sign;
-        else return false;
+        if (board[0][1] != 'X' && board[0][1] != 'O')
+            board[0][1] = sign;
+        else
+            return false;
     }
     else if (user_input == 9)
     {
-        if(board[0][2] != 'X' && board[0][2] != 'O') board[0][2] = sign;
-        else return false;
+        if (board[0][2] != 'X' && board[0][2] != 'O')
+            board[0][2] = sign;
+        else
+            return false;
     }
 
     return true;
@@ -216,6 +234,8 @@ bool isMatched(int r, int c)
         a = rowChecking(r, c);
         return a;
     }
+
+    return true;
 }
 
 bool checkWinner()
@@ -262,6 +282,13 @@ int main()
             alpha++;
         }
 
+    // instruction
+    string s;
+
+    s = "\nYou can play this game with two players. You the numpad keys to enter your inputs.\nKeys form 1 to 9 represents the cells of tic-tac-toe.\n\n";
+    cout << "\n\n--------------------------------Instruction--------------------------------" << endl;
+    cout << s << endl;
+
     // taking user input
     while (turn != N * N)
     {
@@ -293,8 +320,10 @@ int main()
                 // place input to corresponding cells
 
                 isVlaid = userInputConversion(user_input, sign);
-                if(isVlaid) break;
-                else {
+                if (isVlaid)
+                    break;
+                else
+                {
                     cout << "This place is already occupied by another player. Input Again!!\n\n";
                 }
             }
