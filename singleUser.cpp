@@ -326,12 +326,13 @@ void masterUser()
     {   
         srand(time(0));
         int index = rand() % allInputs.size(); // select random input index from the vector
-
+        
         bool valid = userInputValidity(allInputs[index], 'X');
 
         if (valid)
         {
             allInputs.erase(allInputs.begin()+index);
+            cout << allInputs[index] << endl;
             return;
         }
 
