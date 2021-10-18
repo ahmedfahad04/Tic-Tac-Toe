@@ -285,8 +285,8 @@ int main()
     // instruction
     string s;
 
-    s = "\nYou can play this game with two players. You the numpad keys to enter your inputs.\nKeys form 1 to 9 represents the cells of tic-tac-toe.\n\n";
-    cout << "\n\n--------------------------------Instruction--------------------------------" << endl;
+    s = "\nYou can play this game with two player You the numpad keys to enter your inputs.\nKeys form 1 to 9 represents the cells of tic-tac-toe.\n\n";
+    cout << "\n\n---------------------------Instruction---------------------------" << endl;
     cout << s << endl;
 
     // taking user input
@@ -346,9 +346,11 @@ int main()
             else
                 cout << ">>>>>> Player 2 (O)is the Winner <<<<<<\n\n"
                      << endl;
-            break;
+            return 0;
         }
 
         turn = turn + 1;
     }
+
+    cout << ">>>>>> MATCH DRAW <<<<<<\n\n";
 }
