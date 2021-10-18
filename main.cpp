@@ -177,6 +177,7 @@ bool leftDiagonalChecking(int r, int c)
 
 bool rightDiagonalChecking(int r, int c)
 {
+    // r = 0, c = 2-------check if (r != 2 && c != 0)
     while (r != N - 1 && c != 0)
     {
 
@@ -200,7 +201,7 @@ bool isMatched(int r, int c)
     // (0,0) [diagonal-left corner]
     if (r == c)
     {
-        //cout << "INSIDE DIAGONAL CHECKING.." << endl;
+        // cout << "INSIDE DIAGONAL CHECKING.." << endl;
         a = leftDiagonalChecking(r, c);
         b = columnChecking(r, c);
         d = rowChecking(r, c);
@@ -209,9 +210,9 @@ bool isMatched(int r, int c)
     }
 
     // (0,1), (0,2), ...... [colomn]
-    else if (r == 0)
+    else if (r == 0 && c < N - 1)
     {
-        //cout << "INSIDE COLUMN CHECKING.." << endl;
+        // cout << "INSIDE COLUMN CHECKING.." << endl;
         a = columnChecking(r, c);
         return a;
     }
@@ -219,23 +220,20 @@ bool isMatched(int r, int c)
     // (0,2) [diagonal-right corner]
     else if (r == 0 && c == N - 1)
     {
-        //cout << "INSIDE DIAGONAL CHECKING..2" << endl;
+        // cout << "INSIDE DIAGONAL CHECKING..2" << endl;
         a = rightDiagonalChecking(r, c);
         b = columnChecking(r, c);
-        d = rowChecking(r, c);
 
-        return (a || b || d);
+        return (a || b);
     }
 
     // (1,0), (2,0), ..... [row]
     else if (c == 0)
     {
-        //cout << "INSIDE ROW CHECKING.." << endl;
+        // cout << "INSIDE ROW CHECKING.." << endl;
         a = rowChecking(r, c);
         return a;
     }
-
-    return true;
 }
 
 bool checkWinner()
@@ -249,19 +247,92 @@ bool checkWinner()
         {
             for (int j = 0; j < N; j++)
             {
-                checkCrossMatching = isMatched(i, j);
-                if (checkCrossMatching)
-                    return true;
+                if (board[i][j] == 'X' || board[i][j] == 'O')
+                {
+                    checkCrossMatching = isMatched(i, j);
+                    if (checkCrossMatching)
+                        return true;
+                }
             }
         }
 
         else
         {
-            int j = 0;
-            checkCrossMatching = isMatched(i, j);
-            if (checkCrossMatching)
-                return true;
+            if (board[i][0] == 'X' || board[i][0] == 'O')
+            {
+                checkCrossMatching = isMatched(i, 0);
+                if (checkCrossMatching)
+                    return true;
+            }
         }
+    }
+
+    return false;
+}
+
+bool DualUser(int turn)
+{
+    int user_input;
+    char sign;
+
+
+    // seeking user input
+    while (1)
+    {
+        // define 1st or 2nd user
+        if (turn % 2 == 0)
+        {
+            sign = 'X';
+            cout << "Player 1 (X)" << endl;
+        }
+        else
+        {
+            sign = 'O';
+            cout << "Player 2 (O)" << endl;
+        }
+
+        // user input
+        cin >> user_input;
+
+        // check input
+        if (user_input > 0 && user_input < 10)
+        {
+
+            bool isVlaid;
+
+            // place input to corresponding cells
+
+            isVlaid = userInputConversion(user_input, sign);
+            if (isVlaid)
+                break;
+            else
+            {
+                cout << "This place is already occupied by another player. Input Again!!\n\n";
+            }
+        }
+
+        else
+        {
+            cout << "Please Enter between 1 to 9" << endl;
+        }
+
+        
+    }
+
+    // show the board
+    showBoard();
+
+    // check winner
+    if (checkWinner() == true)
+    {
+        if (turn % 2 == 0)
+            cout << ">>>>>> Player 1 (X) is the Winner <<<<<<\n\n"
+                 << endl;
+        else
+            cout << ">>>>>> Player 2 (O) is the Winner <<<<<<\n\n"
+                 << endl;
+
+        return true;
     }
 
     return false;
@@ -271,8 +342,7 @@ int main()
 {
 
     int turn = 0;
-    char sign, alpha = '1';
-    int user_input;
+    char alpha = '1';
 
     // initialize;
     for (int i = 0; i < N; i++)
@@ -285,71 +355,18 @@ int main()
     // instruction
     string s;
 
-    s = "\nYou can play this game with two player You the numpad keys to enter your inputs.\nKeys form 1 to 9 represents the cells of tic-tac-toe.\n\n";
+    s = "\nYou can play this game with two player. Use the numpad keys to enter your inputs.\nKeys form 1 to 9 represents the cells of tic-tac-toe.\n\n";
     cout << "\n\n---------------------------Instruction---------------------------" << endl;
     cout << s << endl;
 
     // taking user input
     while (turn != N * N)
     {
-
-        // seeking user input
-        while (1)
-        {
-            // define 1st or 2nd user
-            if (turn % 2 == 0)
-            {
-                sign = 'X';
-                cout << "Player 1 (X)" << endl;
-            }
-            else
-            {
-                sign = 'O';
-                cout << "Player 2 (O)" << endl;
-            }
-
-            // user input
-            cin >> user_input;
-
-            // check input
-            if (user_input > 0 && user_input < 10)
-            {
-
-                bool isVlaid;
-
-                // place input to corresponding cells
-
-                isVlaid = userInputConversion(user_input, sign);
-                if (isVlaid)
-                    break;
-                else
-                {
-                    cout << "This place is already occupied by another player. Input Again!!\n\n";
-                }
-            }
-
-            else
-            {
-                cout << "Please Enter between 1 to 9" << endl;
-            }
-        }
-
-        // show the board
-        showBoard();
-
-        // check winner
-        if (checkWinner() == true)
-        {
-            if (turn % 2 == 0)
-                cout << ">>>>>> Player 1 (X) is the Winner <<<<<<\n\n"
-                     << endl;
-            else
-                cout << ">>>>>> Player 2 (O)is the Winner <<<<<<\n\n"
-                     << endl;
-            return 0;
-        }
-
+        bool result = DualUser(turn);
         turn = turn + 1;
+
+        if (result)
+            return 0;
     }
 
     cout << ">>>>>> MATCH DRAW <<<<<<\n\n";
