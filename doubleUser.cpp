@@ -270,11 +270,10 @@ bool checkWinner()
     return false;
 }
 
-bool DualUser(int turn)
+void DualUser(int turn)
 {
     int user_input;
     char sign;
-
 
     // seeking user input
     while (1)
@@ -301,7 +300,6 @@ bool DualUser(int turn)
             bool isVlaid;
 
             // place input to corresponding cells
-
             isVlaid = userInputConversion(user_input, sign);
             if (isVlaid)
                 break;
@@ -315,27 +313,11 @@ bool DualUser(int turn)
         {
             cout << "Please Enter between 1 to 9" << endl;
         }
-
-        
     }
 
     // show the board
     showBoard();
 
-    // check winner
-    if (checkWinner() == true)
-    {
-        if (turn % 2 == 0)
-            cout << ">>>>>> Player 1 (X) is the Winner <<<<<<\n\n"
-                 << endl;
-        else
-            cout << ">>>>>> Player 2 (O) is the Winner <<<<<<\n\n"
-                 << endl;
-
-        return true;
-    }
-
-    return false;
 }
 
 int main()
@@ -359,15 +341,32 @@ int main()
     cout << "\n\n---------------------------Instruction---------------------------" << endl;
     cout << s << endl;
 
-    // taking user input
     while (turn != N * N)
     {
-        bool result = DualUser(turn);
+
+        DualUser(turn);
+
+        // check winner
+        if (checkWinner() == true)
+        {
+            if (turn % 2 == 0)
+                cout << ">>>>>> Player 1 (X) is the Winner <<<<<<\n\n"
+                     << endl;
+            else
+                cout << ">>>>>> Player 2 (O) is the Winner <<<<<<\n\n"
+                     << endl;
+
+            return 0;
+        }
+
+       
         turn = turn + 1;
 
-        if (result)
-            return 0;
     }
+
+    
+
+
 
     cout << ">>>>>> MATCH DRAW <<<<<<\n\n";
 }
