@@ -332,7 +332,7 @@ void masterUser()
         if (valid)
         {
             allInputs.erase(allInputs.begin()+index);
-            cout << allInputs[index] << endl;
+            cout << allInputs[index]-1 << endl;
             return;
         }
 
