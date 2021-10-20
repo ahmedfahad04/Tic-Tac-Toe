@@ -5,12 +5,12 @@ This is a very simple implementation of 3x3 Tic-Tac-Toe game. In general we play
 * Human Vs Human
 * Computer Vs Human
 
-As far now I have implemented both of these categories in between two cpp files names **singleUser.cpp** and 
-**doubleUser.cpp**. In later version we'll sum of those files into a single one for better implementation. 
+As far now I have implemented both of these categories in two cpp files names **singleUser.cpp** and 
+**doubleUser.cpp**. In later version we'll merge those files into a single one for better implementation. 
 
 ## Instruction
 
-The instruction is pretty simple. The tic-tac-toe board is similar to the **Numpad Keys**. Press corresponding button to fill out respective cells.
+The instruction is pretty simple. The tic-tac-toe board is similar to the **Numpad Keys**. Press corresponding keys from 1 to 9 to fill out respective cells.
 
 ## Language 
 It's very simple and short project. Nothing complex concepts like data structures or algorithm hasn't used. **C++** is used to demstrate the game's concept. In future version, the UI will be developed using **Java** and **JavaFx**. 
